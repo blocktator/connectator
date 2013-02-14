@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'connectator'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
 
   s.date        = '2013-02-14'
   s.summary     = "Multi DBMS connection abstraction"
@@ -8,8 +8,13 @@ Gem::Specification.new do |s|
   s.authors     = ["Benjamin Wagaman"]
   s.email       = 'ben@wagaman.org'
   s.files       = Dir["lib/connectator.rb"] + Dir["lib/**/*.rb"]
-  s.homepage    = 'http://rubygems.org/gems/connecator'
+  s.homepage    = 'http://rubygems.org/gems/connectator'
 
   s.add_runtime_dependency "dbi", [">= 0.4.5"]
   s.add_runtime_dependency "dbd-odbc", [">= 0.2.5"]
+
+  s.add_development_dependency "bundler"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "rspec-given"
 end

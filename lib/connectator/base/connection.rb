@@ -32,7 +32,7 @@ module Connectator
       end
 
       def ping?
-        if Pinger.pong?(connection_params.server, 3)
+        if Pinger.ping?(connection_params.server, 3)
           true
         else
           @connection_error = "Could not ping: #{connection_params.server}"

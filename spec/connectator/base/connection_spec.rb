@@ -24,4 +24,26 @@ describe Connectator::Base::Connection do
     Then { lambda { connection.connection_string }.should raise_error /Abstract Method/  }
     Then { lambda { connection.send :connection_params_hash }.should raise_error /Abstract Method/  }
   end
+
+  describe "initalized with a valid server" do
+    Given(:connection) {
+      Connectator::Base::Connection.new(:server    => 'localhost')
+    }                                    
+    Then { connection.connection_params.server.should       == 'localhost' }
+    Then { connection.ping?.should be_true }
+
+    describe "initalized with a valid dbi connection" do
+      Given { connection.stub(:valid_dbi?).and_return(true) }
+      Then { connection.valid?.should be_true }
+    end
+  end
+  
+  describe "initalized with a valid dbi connection" do
+    Given(:connection) {
+      Connectator::Base::Connection.new(:server => 'localhost')
+    }                                    
+    Then { connection.connection_params.server.should       == 'localhost' }
+    Then { connection.ping?.should be_true }
+  end
+
 end
