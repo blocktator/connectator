@@ -1,3 +1,5 @@
+require 'ostruct'
+
 module Connectator
   module Base
     class Connection

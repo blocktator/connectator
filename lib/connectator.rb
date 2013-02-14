@@ -1,1 +1,7 @@
-require 'connectator'
+require 'connectator/base/connection'
+require 'connectator/db2/connection'
+require 'connectator/oracle/connection'
+require 'connectator/sql/connection'
+require 'connectator/sql/connection/server_instance_string'
+require 'connectator/sybase/connection'
+require 'connectator/factory'

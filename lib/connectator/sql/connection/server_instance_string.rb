@@ -18,7 +18,7 @@ module Connectator
         private
 
         def server_instance
-          "\\#{instance_name}" unless instance_name.blank?
+          "\\#{instance_name}" unless instance_name.to_s.strip.empty?
         end
 
         def instance_name
