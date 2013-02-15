@@ -41,3 +41,19 @@ drivers.
 ## UNIX ODBC
 
 See example_odbcinst.ini for a sample of what the /etc/odbcinst.ini should look like.
+
+
+## Usage
+    
+    # Initiate the connection object
+    c = Connectator::MySQL::Connection.new(:server   => 'server.com',
+                                           :database => 'foo',
+                                           :port     => '3306',
+                                           :username => 'my_user', 
+                                           :password => 'secret')
+    # Check to see if this is a valid connection
+    c.valid?
+    # if there was an error, you can inspect
+    c.error
+    # run a select statement against the database
+    c.select_all('select * from 'foo.bar')

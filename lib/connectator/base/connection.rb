@@ -1,7 +1,7 @@
 module Connectator
   module Base
     class Connection
-      attr_reader :connection_error
+      attr_reader :error
 
       def initialize(opts = {})
         raise "Connection Options are required" if opts.empty?
@@ -17,15 +17,6 @@ module Connectator
         @connection_params ||= OpenStruct.new
       end
 
-      def system_connection
-        @system_connection ||= Connectator::Base::DBIProxy.new(open)
-      end
-      
-      # proxies all other method calls to the DBIProxy
-      def method_missing(method, *args, &blk)
-        system_connection.send(method, *args, &blk)
-      end
-
       def valid?
         ping? && valid_system_connection?
       end
@@ -34,17 +25,23 @@ module Connectator
         if Pinger.ping?(connection_params.server, 3)
           true
         else
-          @connection_error = "Could not ping: #{connection_params.server}"
+          @error = "Could not ping: #{connection_params.server}"
           false
         end
       end
 
       def valid_system_connection?
-        system_connection.connection
+        system_connection_proxy.connection
         true
       rescue => e
-        @connection_error = e.message
+        @error = e.message
         false
+      end
+
+      # Proxies all other method calls to the system connection
+      # See the DBIProxy for specific methods exposed
+      def method_missing(method, *args, &blk)
+        system_connection_proxy.send(method, *args, &blk)
       end
       
       def connection_string
@@ -52,7 +49,20 @@ module Connectator
       end
 
       private 
+     
+      # TBD: not sure exactly how reload will be exposed 
+      def system_connection_proxy(reload = false)
+        if reload
+          @system_connection_proxy = new_system_connection_proxy 
+        else
+          @system_connection_proxy ||= new_system_connection_proxy
+        end
+      end
       
+      def new_system_connection_proxy
+        DBIProxy.new(open)
+      end
+
       def open
         DBI.connect(connection_string)
       end
