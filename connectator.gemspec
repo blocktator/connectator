@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'connectator'
-  s.version     = '0.0.4'
+  s.version     = '0.0.5'
 
   s.date        = '2013-02-15'
   s.summary     = "Multi DBMS connection abstraction"

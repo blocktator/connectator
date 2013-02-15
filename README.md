@@ -29,6 +29,7 @@ drivers.
 * In order to use MySQL with Connectator, you will need to set up Unix ODBC and
 the MySQL client. Unix ODBC will need to reference the MySQL driver as one of
 its drivers.
+* On Ubuntu, use package: libmyodbc
 
 ### DB2
 

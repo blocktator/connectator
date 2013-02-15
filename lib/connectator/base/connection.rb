@@ -1,5 +1,3 @@
-require 'ostruct'
-
 module Connectator
   module Base
     class Connection
@@ -20,7 +18,7 @@ module Connectator
       end
 
       def system_connection
-        @system_connection ||= DBIProxy.new(open)
+        @system_connection ||= Connectator::Base::DBIProxy.new(open)
       end
       
       # proxies all other method calls to the DBIProxy
@@ -60,7 +58,7 @@ module Connectator
       end
 
       def connection_params_list
-        connection_params_hash.map { |k,v| "#{k}=#{v}"}.join(';')
+        connection_params_hash.reject {|k,v| v.nil? }.map { |k,v| "#{k}=#{v}"}.join(';')
       end
       
       def connection_params_hash

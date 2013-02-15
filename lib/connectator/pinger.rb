@@ -1,5 +1,3 @@
-require 'timeout'
-
 module Connectator
   module Pinger
     def self.ping?(host, timeout = 1)
