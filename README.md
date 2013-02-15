@@ -1,5 +1,5 @@
-# connectator
-
+# Connectator [![Build Status](https://travis-ci.org/jamin4jc/connectator.png?branch=master)](https://travis-ci.org/jamin4jc/connectator)
+ 
 Multi-Connection proxy for DBI
 
 ## Notes
