@@ -26,15 +26,15 @@ describe Connectator::Sql::Connection do
     Then { connection.connection_string.should ==
           "DBI:ODBC:DRIVER=FreeTDS;TDS_Version=8.0;SERVER=Server;Port=Port;DATABASE=master;UID=User;PWD=Pass"  }
     Then { connection.send(:connection_params_hash).should == 
-        {
-         "DRIVER"      => 'FreeTDS',
-         "TDS_Version" => '8.0',
-         "SERVER"      => 'Server',
-         "Port"        => 'Port',
-         "DATABASE"    => 'master',
-         "UID"         => 'User',
-         "PWD"         => 'Pass'
-        }
+      {
+       "DRIVER"      => 'FreeTDS',
+       "TDS_Version" => '8.0',
+       "SERVER"      => 'Server',
+       "Port"        => 'Port',
+       "DATABASE"    => 'master',
+       "UID"         => 'User',
+       "PWD"         => 'Pass'
+      }
     }
   end
 

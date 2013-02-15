@@ -32,8 +32,8 @@ describe Connectator::Base::Connection do
     Then { connection.connection_params.server.should       == 'localhost' }
     Then { connection.ping?.should be_true }
 
-    describe "initalized with a valid dbi connection" do
-      Given { connection.stub(:valid_dbi?).and_return(true) }
+    describe "initalized with a valid system connection" do
+      Given { connection.stub(:valid_system_connection?).and_return(true) }
       Then { connection.valid?.should be_true }
     end
   end

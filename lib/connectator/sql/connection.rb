@@ -3,9 +3,9 @@ module Connectator
     class Connection < Base::Connection
     
       def initialize(opts = {})
-        connection_params.tds_version = '8.0'
-        connection_params.database    = 'master' 
         connection_params.driver      = 'FreeTDS' 
+        connection_params.tds_version = opts[:tds_version] || '8.0'
+        connection_params.database    = opts[:database]    || 'master' 
         super(opts)
       end
       

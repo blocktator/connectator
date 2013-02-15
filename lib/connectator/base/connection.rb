@@ -19,16 +19,17 @@ module Connectator
         @connection_params ||= OpenStruct.new
       end
 
-      def dbi
-        @dbi ||= open
+      def system_connection
+        @system_connection ||= DBIProxy.new(open)
       end
       
-      def close
-        dbi.disconnect
+      # proxies all other method calls to the DBIProxy
+      def method_missing(method, *args, &blk)
+        system_connection.send(method, *args, &blk)
       end
 
       def valid?
-        ping? && valid_dbi?
+        ping? && valid_system_connection?
       end
 
       def ping?
@@ -40,17 +41,12 @@ module Connectator
         end
       end
 
-      def valid_dbi?
-        dbi
+      def valid_system_connection?
+        system_connection.connection
         true
-      rescue DBI::DatabaseError => e
+      rescue => e
         @connection_error = e.message
         false
-      end
-
-      def method_missing(method, *args, &blk)
-        puts method
-        dbi.send(method, *args, &blk)
       end
       
       def connection_string

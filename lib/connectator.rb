@@ -1,5 +1,6 @@
 require 'connectator/base/connection'
 require 'connectator/db2/connection'
+require 'connectator/mysql/connection'
 require 'connectator/oracle/connection'
 require 'connectator/sql/connection'
 require 'connectator/sql/connection/server_instance_string'

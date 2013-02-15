@@ -27,15 +27,15 @@ describe Connectator::Sybase::Connection do
           "DBI:ODBC:DRIVER=FreeTDS;TDS_Version=5.0;SERVER=Server;Port=Port;DATABASE=master;UID=User;PWD=Pass"  }
 
     Then { connection.send(:connection_params_hash).should == 
-        {
-         "DRIVER"      => 'FreeTDS',
-         "TDS_Version" => '5.0',
-         "SERVER"      => 'Server',
-         "Port"        => 'Port',
-         "DATABASE"    => 'master',
-         "UID"         => 'User',
-         "PWD"         => 'Pass'
-        }
+      {
+       "DRIVER"      => 'FreeTDS',
+       "TDS_Version" => '5.0',
+       "SERVER"      => 'Server',
+       "Port"        => 'Port',
+       "DATABASE"    => 'master',
+       "UID"         => 'User',
+       "PWD"         => 'Pass'
+      }
     }
   end
 end
