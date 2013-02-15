@@ -1,6 +1,7 @@
 module Connectator
   module Mysql 
     class Connection < Base::Connection
+      include UsingDBIProxy
 
       def initialize(opts = {})
         connection_params.driver   = 'MySQL'

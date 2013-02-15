@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'connectator'
-  s.version     = '0.0.6'
+  s.version     = '0.0.7'
 
   s.date        = '2013-02-15'
   s.summary     = "Multi DBMS connection abstraction"
@@ -12,7 +12,10 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency "dbi", [">= 0.4.5"]
   s.add_runtime_dependency "dbd-odbc", [">= 0.2.5"]
-  s.add_runtime_dependency "ruby-oci8"
+  
+  # Removing ruby-oci8 as a gem dependency.  Add ruby-oci8 separately if you need to make
+  # a connection to an Oracle database
+  # s.add_runtime_dependency "ruby-oci8"
 
   s.add_development_dependency "bundler"
   s.add_development_dependency "rake"

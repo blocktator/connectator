@@ -1,6 +1,7 @@
 module Connectator
   module Sql
     class Connection < Base::Connection
+      include UsingDBIProxy
     
       def initialize(opts = {})
         connection_params.driver      = 'FreeTDS' 
@@ -24,7 +25,7 @@ module Connectator
          "DRIVER"      => connection_params.driver,
          "TDS_Version" => connection_params.tds_version,
          "SERVER"      => server_instance_string,
-         "Port"        => connection_params.port,
+         "PORT"        => connection_params.port,
          "DATABASE"    => connection_params.database,
          "UID"         => connection_params.username,
          "PWD"         => connection_params.password

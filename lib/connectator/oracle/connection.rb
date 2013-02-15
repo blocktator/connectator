@@ -1,6 +1,7 @@
 module Connectator
   module Oracle
     class Connection < Base::Connection
+      include UsingDBIProxy
       
       def connection_string
         "DBI:OCI8://#{connection_params.server}:#{connection_params.port}/#{connection_params.instance}"

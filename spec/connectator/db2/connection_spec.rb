@@ -26,6 +26,18 @@ describe Connectator::DB2::Connection do
     Then { connection.connection_params.database.should     == 'ABCDEFG'  }
 
     Then { connection.connection_string.should == 
-           'DBI:ODBC:DRIVER=DB2;PROTOCOL=TCPIP;HOSTNAME=Server;Port=Port;DATABASE=ABCDEFG;UID=User;PWD=Pass' }
+           'DBI:ODBC:DRIVER=DB2;PROTOCOL=TCPIP;HOSTNAME=Server;PORT=Port;DATABASE=ABCDEFG;UID=User;PWD=Pass' }
+
+    Then { connection.send(:connection_params_hash).should == 
+      {
+       "DRIVER"      => 'DB2',
+       "PROTOCOL"    => 'TCPIP',
+       "HOSTNAME"    => 'Server',
+       "PORT"        => 'Port',
+       "DATABASE"    => 'ABCDEFG',
+       "UID"         => 'User',
+       "PWD"         => 'Pass'
+      }
+    }
   end
 end

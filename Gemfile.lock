@@ -19,7 +19,6 @@ GEM
       rspec (>= 2.11)
       sorcerer (>= 0.3.7)
     rspec-mocks (2.12.2)
-    ruby-oci8 (2.1.4)
     sorcerer (0.3.10)
 
 PLATFORMS
@@ -32,4 +31,3 @@ DEPENDENCIES
   rake
   rspec
   rspec-given
-  ruby-oci8

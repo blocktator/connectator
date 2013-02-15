@@ -60,11 +60,11 @@ module Connectator
       end
       
       def new_system_connection_proxy
-        DBIProxy.new(open)
+        raise 'Abstract Method'
       end
 
       def open
-        DBI.connect(connection_string)
+        raise 'Abstract Method'
       end
 
       def connection_params_list
