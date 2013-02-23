@@ -1,15 +1,16 @@
 module Connectator
-  module Mysql 
+  module MySQL 
     class Connection < Base::Connection
       include UsingDBIProxy
 
       def initialize(opts = {})
+        super(opts)
         connection_params.driver   = 'MySQL'
         # See this url for options flags
         # http://dev.mysql.com/doc/refman/5.0/en/connector-odbc-configuration-connection-parameters.html#codbc-dsn-option-flags
+        connection_params.port     ||= '3306'
         connection_params.option   = opts[:option]   || '3'
-        connection_params.database = opts[:database] || nil
-        super(opts)
+        connection_params.database = opts[:database]
       end
       
       def connection_string

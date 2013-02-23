@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Connectator::Base::Connection do
 
   describe "initalized with no params" do
-    Then { lambda { Connectator::Sql::Connection.new() }.should raise_error /Connection Options are required/  }
+    Then { lambda { Connectator::SQL::Connection.new() }.should raise_error /Connection Options are required/  }
   end
   
   describe "initalized with basic params" do

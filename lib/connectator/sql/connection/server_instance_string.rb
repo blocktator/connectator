@@ -1,5 +1,5 @@
 module Connectator
-  module Sql
+  module SQL
     class Connection < Base::Connection
       class ServerInstanceString
         def self.build(server, instance)

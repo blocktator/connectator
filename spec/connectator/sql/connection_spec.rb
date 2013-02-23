@@ -1,14 +1,14 @@
 require 'spec_helper'
 
-describe Connectator::Sql::Connection do
+describe Connectator::SQL::Connection do
 
   describe "initalized with no params" do
-    Then { lambda { Connectator::Sql::Connection.new() }.should raise_error /Connection Options are required/  }
+    Then { lambda { Connectator::SQL::Connection.new() }.should raise_error /Connection Options are required/  }
   end
   
   describe "initalized with basic params" do
     Given(:connection) {
-      Connectator::Sql::Connection.new(:server    => 'Server',
+      Connectator::SQL::Connection.new(:server    => 'Server',
                                        :port      => 'Port',
                                        :username  => 'User',
                                        :password  => 'Pass',
@@ -40,25 +40,25 @@ describe Connectator::Sql::Connection do
   end
 
   describe "with no instance" do
-    Given(:connection) { Connectator::Sql::Connection.new(:server    => 'Server',
+    Given(:connection) { Connectator::SQL::Connection.new(:server    => 'Server',
                                                           :instance  => nil) }                                    
     Then { connection.send(:server_instance_string).should == 'Server' }
   end
 
   describe "with an instance of format X\Y" do
-    Given(:connection) { Connectator::Sql::Connection.new(:server    => 'Server',
+    Given(:connection) { Connectator::SQL::Connection.new(:server    => 'Server',
                                                           :instance  => 'Host\Instance') }                                    
     Then { connection.send(:server_instance_string).should == 'Server\Instance' }
   end
   
   describe "with an instance of format X\Y$Z" do
-    Given(:connection) { Connectator::Sql::Connection.new(:server    => 'Server',
+    Given(:connection) { Connectator::SQL::Connection.new(:server    => 'Server',
                                                           :instance  => 'Host\Instance$Foo') }                                    
     Then { connection.send(:server_instance_string).should == 'Server\Instance$Foo' }
   end
   
   describe "with an instance of format X\Y_Z" do
-    Given(:connection) { Connectator::Sql::Connection.new(:server    => 'Server',
+    Given(:connection) { Connectator::SQL::Connection.new(:server    => 'Server',
                                                           :instance  => 'Host\Instance_Foo') }                                    
     Then { connection.send(:server_instance_string).should == 'Server\Instance_Foo' }
   end

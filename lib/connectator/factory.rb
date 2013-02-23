@@ -24,17 +24,38 @@ module Connectator
     end
 
     def connection_class
-      "Connectator::#{connectator_params.kind}::Connection".constantize
+      case connectator_symbol
+      when :db2              then Connectator::DB2::Connection
+      when :mysql            then Connectator::MySQL::Connection
+      when :oracle           then Connectator::Oracle::Connection
+      when :sql, :sql_server then Connectator::SQL::Connection
+      when :sybase           then Connectator::Sybase::Connection
+      else                        raise "Connectator class was not found"
+      end
     end
 
     def extract_connectator_params
       {
-       :server   => connectator_params.server,
-       :instance => connectator_params.instance,
-       :port     => connectator_params.port,
-       :username => connectator_params.username,
-       :password => connectator_params.password
+       :server   => rescue_as_nil { connectator_params.server   },
+       :instance => rescue_as_nil { connectator_params.instance },
+       :database => rescue_as_nil { connectator_params.database },
+       :port     => rescue_as_nil { connectator_params.port     },
+       :option   => rescue_as_nil { connectator_params.option   },
+       :username => rescue_as_nil { connectator_params.username },
+       :password => rescue_as_nil { connectator_params.password }
       }
+    end
+
+    private
+    
+    def connectator_symbol      
+	    rescue_as_nil { connectator_params.kind.to_s.downcase.gsub(' ','_').intern }
+    end
+
+    def rescue_as_nil
+      yield
+    rescue
+      nil
     end
   end
 end

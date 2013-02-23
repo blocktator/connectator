@@ -4,10 +4,10 @@ module Connectator
       include UsingDBIProxy
       
       def initialize(opts = {})
+        super(opts)
         connection_params.driver   = 'DB2' 
         connection_params.protocol = 'TCPIP'
         connection_params.database = opts[:database]
-        super(opts)
       end
       
       def connection_string

@@ -1,13 +1,13 @@
 module Connectator
-  module Sql
+  module SQL
     class Connection < Base::Connection
       include UsingDBIProxy
     
       def initialize(opts = {})
+        super(opts)
         connection_params.driver      = 'FreeTDS' 
         connection_params.tds_version = opts[:tds_version] || '8.0'
         connection_params.database    = opts[:database]    || 'master' 
-        super(opts)
       end
       
       def connection_string
