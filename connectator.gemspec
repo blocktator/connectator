@@ -1,8 +1,8 @@
 Gem::Specification.new do |s|
   s.name        = 'connectator'
-  s.version     = '0.0.7'
+  s.version     = '0.0.8'
 
-  s.date        = '2013-02-15'
+  s.date        = '2013-03-28'
   s.summary     = "Multi DBMS connection abstraction"
   s.description = "This gem lets you make connections to multiple kinds of DBMS systems through DBI"
   s.authors     = ["Benjamin Wagaman"]
